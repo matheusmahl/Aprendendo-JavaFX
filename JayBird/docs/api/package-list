@@ -1,0 +1,7 @@
+org.firebirdsql.ds
+org.firebirdsql.event
+org.firebirdsql.gds
+org.firebirdsql.jca
+org.firebirdsql.jdbc
+org.firebirdsql.management
+org.firebirdsql.pool
