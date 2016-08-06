@@ -49,9 +49,9 @@
                         <Label fx:id="streetLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
-                  <Button layoutX="301.0" layoutY="268.0" mnemonicParsing="false" text="Edit" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="64.0" />
+                  <Button layoutX="301.0" layoutY="268.0" mnemonicParsing="false" onAction="#handleEditPerson" text="Edit" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="64.0" />
                   <Button layoutX="351.0" layoutY="259.0" mnemonicParsing="false" onAction="#handleDeletePerson" text="Delete" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0" />
-                  <Button layoutX="263.0" layoutY="268.0" mnemonicParsing="false" text="New" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="110.0" />
+                  <Button layoutX="263.0" layoutY="268.0" mnemonicParsing="false" onAction="#handleNewPerson" text="New" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="110.0" />
                </children>
             </AnchorPane>
         </items>

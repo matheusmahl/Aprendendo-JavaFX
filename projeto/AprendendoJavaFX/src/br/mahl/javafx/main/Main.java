@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -57,14 +58,14 @@ public class Main extends Application {
 	private void showPersonOverview() {
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("PersonOverview.fxml"));
+			loader.setLocation(Main.class.getResource("../view/PersonOverview.fxml"));
 			AnchorPane personOverview = (AnchorPane) loader.load();
 
 			rootLayout.setCenter(personOverview);
-			
-			 // Give the controller access to the main app.
-	        PersonOverviewController controller = loader.getController();
-	        controller.setMainApp(this);
+
+			// Give the controller access to the main app.
+			PersonOverviewController controller = loader.getController();
+			controller.setMainApp(this);
 
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -74,7 +75,7 @@ public class Main extends Application {
 
 	private void initRootLayout() {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(Main.class.getResource("rootLayout.fxml"));
+		loader.setLocation(Main.class.getResource("../view/rootLayout.fxml"));
 
 		try {
 			rootLayout = (BorderPane) loader.load();
@@ -96,6 +97,36 @@ public class Main extends Application {
 
 	public ObservableList<Person> getPersonData() {
 		return personData;
+	}
+
+	public boolean showPersonEditDialog(Person person) {
+		try {
+			// Carregar o FXML e criar um novo Stage para o popup dialog.
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource("../view/PersonEditDialog.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Edit Person");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(primaryStage);
+
+			Scene scene = new Scene(page);
+			dialogStage.setScene(scene);
+
+			PersonEditDialogController controller = loader.getController();
+			controller.setDialogStage(dialogStage);
+			controller.setPerson(person);
+
+			dialogStage.showAndWait();
+
+			return controller.isOkClicked();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+
 	}
 
 }
